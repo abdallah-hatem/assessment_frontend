@@ -10,6 +10,7 @@ import {
 import "./App.css";
 import Layout from "./layout";
 import Dashboard from "./pages/dashboard";
+import { useTranslation } from "react-i18next";
 
 interface RoutesDto {
   path: string;
@@ -22,6 +23,13 @@ function App() {
     { path: "/login", element: <Login /> },
     { path: "/dashboard", element: <Dashboard /> },
   ];
+
+  const { i18n } = useTranslation();
+  if (i18n.language === "en-US") {
+    i18n.init();
+    document.documentElement.setAttribute("lang", "en");
+    i18n.changeLanguage("en");
+  }
 
   return (
     <>

@@ -1,0 +1,28 @@
+.ann-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin-top: 20px;
+    gap: 25px;
+}
+
+.ann-item-profile {
+    flex: 1;
+    width: 240px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.ann-item-p {
+    flex:3;
+    font-size: 14px;
+    color: gray;
+}
+
+@media screen and (max-width: 1000px) {
+    .ann-item {
+    flex-direction: column;
+    }
+}

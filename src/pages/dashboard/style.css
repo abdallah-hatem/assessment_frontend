@@ -1,0 +1,12 @@
+.bottom-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+@media screen and (max-width: 1000px) {
+ .bottom-container{
+    flex-direction: column;
+ }
+}

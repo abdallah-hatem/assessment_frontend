@@ -15,8 +15,15 @@ interface Props {
 export default function Layout({ children }: Props) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const handleDrawerToggle = () => {
+  function handleDrawerToggle() {
     setMobileOpen(!mobileOpen);
+  }
+
+  const styleMainContainer = {
+    flexGrow: 1,
+    p: 3,
+    width: { sm: `calc(100% - ${drawerWidth}px)` },
+    backgroundColor: "#EDEDED",
   };
 
   return (
@@ -35,16 +42,8 @@ export default function Layout({ children }: Props) {
       />
 
       {/* Main Container */}
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          p: 3,
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-        }}
-      >
+      <Box component="main" sx={styleMainContainer}>
         <Toolbar />
-        {/* Main content */}
         <Box>{children}</Box>
       </Box>
     </Box>

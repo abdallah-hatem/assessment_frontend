@@ -15,6 +15,10 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
+import LanguageIcon from "@mui/icons-material/Language";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import "./style.css";
 
 // Search bar style //
 const Search = styled("div")(({ theme }) => ({
@@ -73,6 +77,8 @@ export default function Navbar({
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+  const navigate = useNavigate();
+
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -112,6 +118,28 @@ export default function Navbar({
     </Menu>
   );
 
+  const [lang, setLang] = useState(true);
+
+  const iconbtnsMobile: any[] = [
+    { icon: <MailIcon />, title: "Messages" },
+    { icon: <NotificationsIcon />, title: "Notifications" },
+    {
+      icon: <AccountCircle />,
+      onClick: handleProfileMenuOpen,
+      ariaControls: "primary-search-account-menu",
+      title: "Profile",
+    },
+    {
+      icon: <LanguageIcon />,
+      onClick: () => {
+        setLang((prev) => !prev);
+        lang ? i18n.changeLanguage("en") : i18n.changeLanguage("ar");
+      },
+      edge: "end",
+      title: "Lang",
+    },
+  ];
+
   // Mobile
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
@@ -130,122 +158,52 @@ export default function Navbar({
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={1} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={3} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
+      {iconbtnsMobile.map((el, index) => (
+        <MenuItem key={index} onClick={el.onClick}>
+          <IconButton
+            size="large"
+            // aria-label="account of current user"
+            aria-controls={el.ariaControls}
+            aria-haspopup="true"
+            color="inherit"
+          >
+            {el.icon}
+          </IconButton>
+          <p>{el.title}</p>
+        </MenuItem>
+      ))}
     </Menu>
   );
 
+  const [t, i18n] = useTranslation();
+  const iconbtns: any[] = [
+    { icon: <MailIcon /> },
+    { icon: <NotificationsIcon /> },
+    {
+      icon: <AccountCircle />,
+      onClick: handleProfileMenuOpen,
+      ariaControls: menuId,
+      // edge: "end",
+    },
+    {
+      icon: <LanguageIcon />,
+      onClick: () => {
+        setLang((prev) => !prev);
+        lang ? i18n.changeLanguage("en") : i18n.changeLanguage("ar");
+      },
+      ariaControls: menuId,
+      edge: "end",
+    },
+  ];
   return (
-    // <Box sx={{ flexGrow: 1 }}>
-    //   <AppBar position="static">
-    //     <Toolbar>
-    //       <IconButton
-    //         size="large"
-    //         edge="start"
-    //         color="inherit"
-    //         aria-label="open drawer"
-    //         sx={{ mr: 2 }}
-    //       >
-    //         <MenuIcon />
-    //       </IconButton>
-    //       <Typography
-    //         variant="h6"
-    //         noWrap
-    //         component="div"
-    //         sx={{ display: { xs: 'none', sm: 'block' } }}
-    //       >
-    //         MUI
-    //       </Typography>
-    //       <Search>
-    //         <SearchIconWrapper>
-    //           <SearchIcon />
-    //         </SearchIconWrapper>
-    //         <StyledInputBase
-    //           placeholder="Search…"
-    //           inputProps={{ 'aria-label': 'search' }}
-    //         />
-    //       </Search>
-    //       <Box sx={{ flexGrow: 1 }} />
-    //       <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-    //         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-    //           <Badge badgeContent={1} color="error">
-    //             <MailIcon />
-    //           </Badge>
-    //         </IconButton>
-    //         <IconButton
-    //           size="large"
-    //           aria-label="show 17 new notifications"
-    //           color="inherit"
-    //         >
-    //           <Badge badgeContent={3} color="error">
-    //             <NotificationsIcon />
-    //           </Badge>
-    //         </IconButton>
-    //         <IconButton
-    //           size="large"
-    //           edge="end"
-    //           aria-label="account of current user"
-    //           aria-controls={menuId}
-    //           aria-haspopup="true"
-    //           onClick={handleProfileMenuOpen}
-    //           color="inherit"
-    //         >
-    //           <AccountCircle />
-    //         </IconButton>
-    //       </Box>
-    //       <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-    //         <IconButton
-    //           size="large"
-    //           aria-label="show more"
-    //           aria-controls={mobileMenuId}
-    //           aria-haspopup="true"
-    //           onClick={handleMobileMenuOpen}
-    //           color="inherit"
-    //         >
-    //           <MoreIcon />
-    //         </IconButton>
-    //       </Box>
-    //     </Toolbar>
-    //   </AppBar>
-    //   {renderMobileMenu}
-    //   {renderMenu}
-    // </Box>
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position="fixed"
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
+          color: "black",
+          backgroundColor: "white",
         }}
       >
         <Toolbar>
@@ -262,21 +220,24 @@ export default function Navbar({
 
           {/* Nav Logo */}
           <Typography
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/", { replace: true })}
             sx={{ display: { xs: "none", sm: "block" } }}
             variant="h6"
             noWrap
             component="div"
+            className="nav-logo"
           >
-            Responsive drawer
+            {t("Welcome Talia")}
           </Typography>
 
           {/* spacing */}
           <Box sx={{ flexGrow: 1 }} />
 
           {/* Search bar */}
-          <Search>
+          <Search style={{ borderRadius: "20px", border: "1px solid #1E90FF" }}>
             <SearchIconWrapper>
-              <SearchIcon />
+              <SearchIcon style={{ color: "#1E90FF" }} />
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
@@ -286,35 +247,27 @@ export default function Navbar({
 
           {/* Nav buttons */}
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
-            >
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
+            {iconbtns.map((el, index) => (
+              <IconButton
+                size="large"
+                edge={el.edge}
+                // aria-label="account of current user"
+                aria-controls={el.ariaControls}
+                // aria-haspopup="true"
+                onClick={el.onClick}
+                color="inherit"
+                key={index}
+                style={{ color: "#1E90FF" }}
+              >
+                {!el.ariaControls ? (
+                  <Badge badgeContent={17} color="error">
+                    {el.icon}
+                  </Badge>
+                ) : (
+                  el.icon
+                )}
+              </IconButton>
+            ))}
           </Box>
 
           {/* Menu button availble for mobile view */}
