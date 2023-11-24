@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { logIn, logout } from "../../features/user/userSlice";
+import ButtonComp from "../../components/buttonComp";
 
 export default function Home() {
   const user = useSelector((state: any) => state.user.loggedIn);
@@ -8,8 +9,12 @@ export default function Home() {
   return (
     <>
       <div>Home Page</div>
-      <button onClick={() => dispatch(logIn())}>Login</button>
-      <button onClick={() => dispatch(logout())}>Logout</button>
+      <ButtonComp onClick={() => dispatch(logIn())} title="Login" />
+      <ButtonComp
+        style={{ marginLeft: 20, backgroundColor: "red" }}
+        onClick={() => dispatch(logout())}
+        title="Logout"
+      />
       <p>{user ? "Logged In" : "Logged out"}</p>
     </>
   );
