@@ -220,12 +220,12 @@ export default function Navbar({
 
           {/* Nav Logo */}
           <Typography
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer", fontSize: 35, fontWeight:650 }}
             onClick={() => navigate("/", { replace: true })}
             sx={{ display: { xs: "none", sm: "block" } }}
             variant="h6"
             noWrap
-            component="div"
+            // component="div"
             className="nav-logo"
           >
             {t("Welcome Talia")}

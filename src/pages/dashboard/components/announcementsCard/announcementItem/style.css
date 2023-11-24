@@ -19,6 +19,8 @@
     flex:3;
     font-size: 14px;
     color: gray;
+    max-height: 90px;
+    overflow: hidden;
 }
 
 @media screen and (max-width: 1000px) {

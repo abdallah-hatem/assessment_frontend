@@ -2,6 +2,7 @@ import HeaderCard from "./components/headerCard/headerCard";
 import AnnouncementCard from "./components/announcementsCard";
 import DueCard from "./components/dueCard";
 import "./style.css";
+import RequireAuth from "../../components/Hoc/requireAuth";
 
 function Dashboard() {
   return (
@@ -15,4 +16,4 @@ function Dashboard() {
     </div>
   );
 }
-export default Dashboard;
+export default RequireAuth(Dashboard);

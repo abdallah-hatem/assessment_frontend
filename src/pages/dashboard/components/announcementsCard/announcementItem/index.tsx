@@ -12,7 +12,9 @@ export default function AnnItem() {
           />
         </div>
         <div className="profile-desc" style={{ flex: 1 }}>
-          <p style={{ margin: 0 }}>Mr.Ahmad Mostafa</p>
+          <p style={{ margin: 0, fontSize: 14, minWidth: "7.5rem" }}>
+            Mr.Ahmad Mostafa
+          </p>
           <p style={{ margin: 0, fontSize: 10 }}>Lorem ipsum</p>
         </div>
       </div>

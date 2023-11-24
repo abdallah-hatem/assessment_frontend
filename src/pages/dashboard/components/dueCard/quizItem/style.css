@@ -1,0 +1,10 @@
+.quiz-top {
+    display: flex;
+    align-items: center;
+    width: 10rem;
+}
+
+.quiz-mid p {
+    color: grey;
+    margin-top: 0;
+}

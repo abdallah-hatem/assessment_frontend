@@ -51,7 +51,7 @@ export default function SideBar({
     <div
       style={{
         background: gradientColor,
-        height: "100vh",
+        height: "100%",
       }}
     >
       <Toolbar>

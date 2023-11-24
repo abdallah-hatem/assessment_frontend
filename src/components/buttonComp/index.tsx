@@ -2,13 +2,21 @@ import { Button } from "@mui/material";
 
 interface Props {
   style?: object;
-  title?:string
+  title?: string;
+  variant?: "contained" | "outlined" | "text";
 }
-export default function ButtonComp({ style ,title}: Props) {
+export default function ButtonComp({
+  style,
+  title,
+  variant = "contained",
+}: Props) {
   return (
     <Button
-      variant="contained"
-      style={{ backgroundColor: " rgb(30, 144, 255)", ...style }}
+      variant={variant}
+      style={{
+        backgroundColor: variant !== "outlined" ? "rgb(30, 144, 255)" : "",
+        ...style,
+      }}
     >
       {title}
     </Button>
