@@ -5,8 +5,8 @@ export default function AnnouncementCard() {
   return (
     <CardComp headerTitle="Announcements" style={{ flex: 3,height:"fit-content" }}>
       <AnnItem />
-      {/* <AnnItem />
-      <AnnItem /> */}
+      <AnnItem />
+      <AnnItem />
     </CardComp>
   );
 }
