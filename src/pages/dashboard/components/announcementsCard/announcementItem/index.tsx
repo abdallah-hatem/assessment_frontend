@@ -1,6 +1,10 @@
 import "./style.css";
 
-export default function AnnItem() {
+interface Props {
+  announcement: string;
+}
+
+export default function AnnItem({ announcement }: Props) {
   return (
     <div className="ann-item">
       <div className="ann-item-profile">
@@ -18,11 +22,7 @@ export default function AnnItem() {
           <p style={{ margin: 0, fontSize: 10 }}>Lorem ipsum</p>
         </div>
       </div>
-      <div className="ann-item-p">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum, quae?
-        Libero sint neque minus sit rerum sapiente sunt officiis! Quisquam, non
-        sequi ducimus cumque ab eaque enim odio eligendi deleniti.
-      </div>
+      <div className="ann-item-p">{announcement}</div>
     </div>
   );
 }

@@ -1,27 +1,34 @@
+import { useEffect, useState } from "react";
 import CardComp from "../../../../components/cardComp";
 import QuizItem from "./quizItem";
 
-export default function DueCard() {
-  const quizItems = [
-    {
-      title: "unit 2, quiz",
-      btnTitle: "Start Quiz",
-    },
-    {
-      title: "12-12 Assignment",
-      btnTitle: "Start Assignment",
-      style: { marginTop: 20 },
-    },
-  ];
+interface Props {
+  data: any;
+}
+export default function DueCard({ data }: Props) {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    if (data) setLoading(false);
+  }, [data]);
 
   return (
     <CardComp
       headerTitle="Whats due"
       style={{ flex: 1, height: "fit-content" }}
     >
-      {quizItems.map((el, index) => (
-        <QuizItem btnTitle={el.btnTitle} title={el.title} style={el.style} key={index} />
-      ))}
+      {!loading ? (
+        data.map((el: any, index: number) => (
+          <QuizItem
+            btnTitle={el.btnTitle}
+            courseName={el.courseName}
+            style={el.style}
+            dueTo={el.endDate}
+            key={index}
+          />
+        ))
+      ) : (
+        <h3>Loading</h3>
+      )}
     </CardComp>
   );
 }

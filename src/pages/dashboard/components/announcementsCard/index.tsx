@@ -1,12 +1,31 @@
+import { useEffect, useState } from "react";
 import CardComp from "../../../../components/cardComp";
 import AnnItem from "./announcementItem";
 
-export default function AnnouncementCard() {
+interface Props {
+  data: any;
+}
+
+export default function AnnouncementCard({ data }: Props) {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    if (data) setLoading(false);
+  }, [data]);
+
   return (
-    <CardComp headerTitle="Announcements" style={{ flex: 3,height:"fit-content" }}>
-      <AnnItem />
-      <AnnItem />
-      <AnnItem />
+    <CardComp
+      headerTitle="Announcements"
+      style={{ flex: 3, height: "fit-content" }}
+    >
+      <>
+        {!loading && (
+          <>
+            {data.map((el: any, index: number) => (
+              <AnnItem announcement={el.announcement} key={index} />
+            ))}
+          </>
+        )}
+      </>
     </CardComp>
   );
 }

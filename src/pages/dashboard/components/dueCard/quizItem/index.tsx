@@ -5,8 +5,16 @@ interface Props {
   style?: object;
   title?: string;
   btnTitle?: string;
+  dueTo?: string;
+  courseName?: string;
 }
-export default function QuizItem({ style, title, btnTitle = "Title" }: Props) {
+export default function QuizItem({
+  style,
+  title = "unit 2, quiz",
+  dueTo,
+  btnTitle = "Start",
+  courseName,
+}: Props) {
   return (
     <div style={style}>
       <div className="quiz-top">
@@ -15,13 +23,13 @@ export default function QuizItem({ style, title, btnTitle = "Title" }: Props) {
       </div>
       <div className="quiz-mid">
         <p>
-          Course: <span>Physics</span>
+          Course: <span>{courseName}</span>
         </p>
         <p>
           Topic: <span>Unit 2 forces</span>
         </p>
         <p>
-          Due to: <span>20 Dec 2017-09:00 PM</span>
+          Due to: <span>{dueTo}</span>
         </p>
       </div>
       <ButtonComp
