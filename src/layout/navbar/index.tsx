@@ -73,6 +73,7 @@ export default function Navbar({
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     useState<null | HTMLElement>(null);
+  const [lang, setLang] = useState(true);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -117,8 +118,6 @@ export default function Navbar({
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
-
-  const [lang, setLang] = useState(true);
 
   const iconbtnsMobile: any[] = [
     { icon: <MailIcon />, title: "Messages" },
@@ -183,7 +182,6 @@ export default function Navbar({
       icon: <AccountCircle />,
       onClick: handleProfileMenuOpen,
       ariaControls: menuId,
-      // edge: "end",
     },
     {
       icon: <LanguageIcon />,
@@ -196,7 +194,7 @@ export default function Navbar({
     },
   ];
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1,display:"contents" }}>
       <AppBar
         position="fixed"
         sx={{
@@ -220,12 +218,11 @@ export default function Navbar({
 
           {/* Nav Logo */}
           <Typography
-            style={{ cursor: "pointer", fontSize: 35, fontWeight:650 }}
+            style={{ cursor: "pointer", fontSize: 35, fontWeight: 650 }}
             onClick={() => navigate("/", { replace: true })}
             sx={{ display: { xs: "none", sm: "block" } }}
             variant="h6"
             noWrap
-            // component="div"
             className="nav-logo"
           >
             {t("Welcome Talia")}
@@ -251,9 +248,7 @@ export default function Navbar({
               <IconButton
                 size="large"
                 edge={el.edge}
-                // aria-label="account of current user"
                 aria-controls={el.ariaControls}
-                // aria-haspopup="true"
                 onClick={el.onClick}
                 color="inherit"
                 key={index}
