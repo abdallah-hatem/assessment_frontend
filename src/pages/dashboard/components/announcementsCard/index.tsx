@@ -18,12 +18,14 @@ export default function AnnouncementCard({ data }: Props) {
       style={{ flex: 3, height: "fit-content" }}
     >
       <>
-        {!loading && (
+        {!loading ? (
           <>
             {data.map((el: any, index: number) => (
               <AnnItem announcement={el.announcement} key={index} />
             ))}
           </>
+        ) : (
+          <h3>Loading...</h3>
         )}
       </>
     </CardComp>

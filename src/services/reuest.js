@@ -12,13 +12,13 @@ async function REQUEST(options) {
   const onError = function (error) {
     console.error(error);
 
-    if (error.response) {
-      if (error.response.status === 401) {
-        window.href = "/login";
-      }
-      return Promise.reject(error.response.data);
-    }
-    return Promise.reject(error);
+    // if (error.response) {
+    //   if (error.response.status === 401) {
+    //     window.href = "/login";
+    //   }
+    //   return Promise.reject(error.response.data);
+    // }
+    // return Promise.reject(error);
   };
 
   return client({

@@ -17,7 +17,7 @@
 }
 
 .ann-item-p {
-    flex:3;
+    flex: 3;
     font-size: 14px;
     color: gray;
     max-height: 90px;
@@ -26,6 +26,12 @@
 
 @media screen and (max-width: 1000px) {
     .ann-item {
-    flex-direction: column;
+        flex-direction: column;
     }
+
+    .ann-item-profile {
+        align-self: baseline;
+
+    }
+
 }
